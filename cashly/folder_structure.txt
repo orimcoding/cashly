@@ -1,0 +1,92 @@
+.
+├── README.md
+├── backend
+│   ├── ai
+│   │   ├── chatbot.py
+│   │   ├── config
+│   │   ├── preprocess.py
+│   │   └── recommendation.py
+│   ├── api
+│   │   ├── auth.js
+│   │   ├── expenses.js
+│   │   ├── goals.js
+│   │   └── insights.js
+│   ├── app.js
+│   ├── controllers
+│   │   ├── authController.js
+│   │   ├── expenseController.js
+│   │   ├── goalController.js
+│   │   └── insightController.js
+│   ├── middlewares
+│   │   ├── authMiddleware.js
+│   │   ├── errorHandler.js
+│   │   └── logger.js
+│   ├── models
+│   │   ├── Expense.js
+│   │   ├── Goal.js
+│   │   ├── Reward.js
+│   │   └── User.js
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   ├── expenseRoutes.js
+│   │   ├── goalRoutes.js
+│   │   └── insightRoutes.js
+│   ├── scripts
+│   │   ├── docker-entrypoint.sh
+│   │   └── setup_db.sh
+│   └── server.js
+├── database
+│   ├── schema.sql
+│   └── seed.sql
+├── docker
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── folder_structure.txt
+├── package-lock.json
+├── package.json
+├── public
+│   └── index.html
+├── src
+│   ├── App.js
+│   ├── assets
+│   │   ├── fonts
+│   │   ├── icons
+│   │   └── images
+│   ├── components
+│   │   ├── ai
+│   │   ├── auth
+│   │   ├── common
+│   │   ├── dashboard
+│   │   └── layout
+│   ├── context
+│   │   └── AuthContext.js
+│   ├── data
+│   │   └── sampleData.json
+│   ├── hooks
+│   ├── index.js
+│   ├── pages
+│   │   ├── AIInsights.js
+│   │   ├── Dashboard.js
+│   │   ├── HomePage.js
+│   │   ├── Login.js
+│   │   ├── Rewards.js
+│   │   ├── SavingsGoals.js
+│   │   ├── SignUp.js
+│   │   └── TrackExpenses.js
+│   ├── services
+│   │   ├── aiService.js
+│   │   ├── apiService.js
+│   │   ├── authService.js
+│   │   └── bankService.js
+│   └── styles
+│       ├── global.css
+│       ├── pages
+│       │   ├── dashboard.css
+│       │   └── homepage.css
+│       └── variables.css
+└── tests
+    ├── e2e
+    ├── integration
+    └── unit
+
+34 directories, 55 files
