@@ -1,24 +1,14 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const authRoutes = require('./routes/authRoutes');
-const expenseRoutes = require('./routes/expenseRoutes');
-const goalRoutes = require('./routes/goalRoutes');
-const insightRoutes = require('./routes/insightRoutes');
-const { errorHandler } = require('./middlewares/errorHandler');
+const app = require('./app'); // Import the Express app
+const mongoose = require('mongoose');
+require('dotenv').config(); // Load environment variables
 
-app.use(cors());
-app.use(express.json());
+// Connect to MongoDB
+mongoose
+    .connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Could not connect to MongoDB:', err));
 
-// Define Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/expenses', expenseRoutes);
-app.use('/api/goals', goalRoutes);
-app.use('/api/insights', insightRoutes);
-
-// Error Handler Middleware
-app.use(errorHandler);
-
+// Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
