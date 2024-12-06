@@ -1,18 +1,39 @@
-const app = require('./app'); // Import the Express app
-const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 
-// MongoDB Connection
-mongoose
-    .connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => {
-        console.error('Could not connect to MongoDB:', err);
-        process.exit(1); // Exit process if DB connection fails
-    });
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+const expenses = require('./data/expenses.json');
+const goals = require('./data/goals.json');
+const rewards = require('./data/rewards.json');
+const user = require('./data/user.json');
+
+// Mock authentication endpoint
+app.post('/api/login', (req, res) => {
+  // In reality, you'd check req.body credentials
+  // Here, just return mock user data
+  res.json({ ...user, token: "mock-jwt-token" });
+});
+
+app.post('/api/logout', (req, res) => {
+  res.json({ message: 'Logged out successfully' });
+});
+
+app.get('/api/expenses', (req, res) => {
+  res.json(expenses);
+});
+
+app.get('/api/goals', (req, res) => {
+  res.json(goals);
+});
+
+app.get('/api/rewards', (req, res) => {
+  res.json(rewards);
+});
+
+app.listen(4000, () => {
+  console.log('Backend server running on http://localhost:4000');
 });

@@ -1,0 +1,10 @@
+{
+    "points": 250,
+    "nextReward": "Free $20 Gift Card at 300 points",
+    "rewards": [
+      { "level": "Bronze", "requirement": 100, "reward": "5% Off Grocery Coupon" },
+      { "level": "Silver", "requirement": 200, "reward": "Free Financial E-Book" },
+      { "level": "Gold", "requirement": 300, "reward": "$20 Gift Card" }
+    ]
+  }
+  
