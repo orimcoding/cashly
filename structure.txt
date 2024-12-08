@@ -1,0 +1,53 @@
+.
+├── README.md
+├── backend
+│   ├── data
+│   │   ├── expenses.json
+│   │   ├── goals.json
+│   │   ├── rewards.json
+│   │   └── user.json
+│   ├── package-lock.json
+│   ├── package.json
+│   └── server.js
+├── frontend
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.cjs
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── components
+│   │   │   ├── AnimatedPage.jsx
+│   │   │   ├── AnimatedTransition.jsx
+│   │   │   ├── AuthModal.jsx
+│   │   │   ├── ExpenseItem.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── GoalCard.jsx
+│   │   │   ├── LoadingSpinner.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── RewardCard.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── SkeletonCard.jsx
+│   │   ├── hooks
+│   │   │   └── useAuth.jsx
+│   │   ├── main.jsx
+│   │   ├── pages
+│   │   │   ├── DashboardPage.jsx
+│   │   │   ├── GoalsPage.jsx
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── InsightsPage.jsx
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── NotFoundPage.jsx
+│   │   │   ├── ProfilePage.jsx
+│   │   │   ├── RewardsPage.jsx
+│   │   │   ├── SignUpPage.jsx
+│   │   │   └── TrackExpensesPage.jsx
+│   │   ├── router.jsx
+│   │   ├── styles.css
+│   │   └── utils
+│   │       └── fetchData.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+└── structure.txt
+
+8 directories, 42 files

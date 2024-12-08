@@ -34,6 +34,10 @@ app.get('/api/rewards', (req, res) => {
   res.json(rewards);
 });
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Cashly Backend!');
+});
+
 app.listen(4000, () => {
   console.log('Backend server running on http://localhost:4000');
 });
