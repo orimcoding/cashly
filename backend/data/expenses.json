@@ -1,8 +1,7 @@
 [
-    { "id": 1, "category": "Groceries", "amount": 50, "date": "2024-12-06" },
-    { "id": 2, "category": "Rent", "amount": 1200, "date": "2024-12-01" },
-    { "id": 3, "category": "Dining", "amount": 80, "date": "2024-12-05" },
-    { "id": 4, "category": "Entertainment", "amount": 40, "date": "2024-12-03" },
-    { "id": 5, "category": "Utilities", "amount": 100, "date": "2024-12-02" }
-  ]
-  
+  { "id": 1, "category": "Groceries", "amount": 50, "date": "2024-12-06" },
+  { "id": 2, "category": "Rent", "amount": 1200, "date": "2024-12-01" },
+  { "id": 3, "category": "Dining", "amount": 80, "date": "2024-12-05" },
+  { "id": 4, "category": "Entertainment", "amount": 40, "date": "2024-12-03" },
+  { "id": 5, "category": "Utilities", "amount": 100, "date": "2024-12-02" }
+]

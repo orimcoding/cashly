@@ -1,17 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-      "./index.html",
-      "./src/**/*.{js,jsx}"
-    ],
-    theme: {
-      extend: {
-        transitionProperty: {
-          'height': 'height',
-          'width': 'width'
-        }
-      },
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx}"
+  ],
+  theme: {
+    extend: {
+      transitionProperty: {
+        'height': 'height',
+        'width': 'width'
+      }
     },
-    plugins: [],
-  }
-  
+  },
+  plugins: [],
+}
