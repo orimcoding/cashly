@@ -1,5 +1,5 @@
 [
   { "id": 1, "name": "Vacation Fund", "target": 2000, "saved": 900 },
-  { "id": 2, "name": "Emergency Fund", "target": 5000, "saved": 3000 },
+  { "id": 2, "name": "Sai Date Fund", "target": 5000, "saved": 3000 },
   { "id": 3, "name": "New Laptop", "target": 1500, "saved": 300 }
 ]

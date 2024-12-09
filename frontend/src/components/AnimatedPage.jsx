@@ -2,12 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const variants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 }
+  initial: { opacity: 0, scale: 0.95 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.95 }
 }
 
-function AnimatedPage({children}) {
+function AnimatedPage({ children }) {
   return (
     <motion.div
       className="p-6"
@@ -15,7 +15,7 @@ function AnimatedPage({children}) {
       animate="animate"
       exit="exit"
       variants={variants}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       {children}
     </motion.div>

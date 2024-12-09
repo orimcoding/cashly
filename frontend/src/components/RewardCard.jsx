@@ -1,19 +1,25 @@
 import React from 'react'
+import RewardCard from './RewardCard'
 
-function RewardCard({reward, currentPoints}) {
-  const unlocked = currentPoints >= reward.requirement
+const rewards = [
+  { level: "Bronze", requirement: 100, reward: "10% Discount" },
+  { level: "Silver", requirement: 500, reward: "Free Gift Card" },
+  { level: "Gold", requirement: 1000, reward: "Exclusive Access" },
+]
+
+function RewardsPage() {
+  const currentPoints = 450 // Example points
+
   return (
-    <div className={`p-4 rounded shadow mb-4 ${unlocked ? 'bg-green-100' : 'bg-white'}`}>
-      <h4 className="font-bold">{reward.level} Reward</h4>
-      <p className="text-sm text-gray-600">Requirement: {reward.requirement} points</p>
-      <p className="text-sm">{reward.reward}</p>
-      {unlocked ? (
-        <p className="text-green-700 mt-2">Unlocked!</p>
-      ) : (
-        <p className="text-red-600 mt-2">Not yet unlocked</p>
-      )}
+    <div className="p-6">
+      <h2 className="text-3xl font-bold text-primary mb-6">Your Rewards</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {rewards.map((reward, index) => (
+          <RewardCard key={index} reward={reward} currentPoints={currentPoints} />
+        ))}
+      </div>
     </div>
   )
 }
 
-export default RewardCard
+export default RewardsPage
