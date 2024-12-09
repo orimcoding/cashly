@@ -10,10 +10,12 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('')
     try {
       await login(email, password);
     } catch (err) {
       setError('Invalid email or password');
+      setError(err.message || 'Invalid email or password');
     }
   };
 
