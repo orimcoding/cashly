@@ -1,73 +1,187 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import AnimatedPage from '../components/AnimatedPage'
-import HomepageImage from '../assets/sai_homepage.jpg'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuth";
+import AnimatedPage from "../components/AnimatedPage";
+import HomepageImage from "../assets/sai_homepage.jpg";
 
 function HomePage() {
+  const { isLoggedIn } = useAuthContext();
+
   return (
     <AnimatedPage>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-gradientFrom to-gradientTo text-white py-20 text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-5xl font-bold mb-6 leading-tight">
-            Simplify Your Spending, <br /> Save Smarter with Cashly!
-          </h1>
-          <p className="text-lg font-medium mb-8">
-            Track expenses, set savings goals, get AI insights, and earn rewards—all in one place.
+      <section
+        className="py-20 text-center"
+        style={{ backgroundColor: "#1C1C1E", color: "#E0E0E0" }}
+      >
+        <div className="max-w-5xl mx-auto px-6">
+        <h1
+          className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white"
+        >
+          Master Your Finances with <span style={{ color: "#0BDB00" }}>Cashly</span>
+        </h1>
+          <p className="text-lg md:text-xl mb-10" style={{ color: "#B0B0B0" }}>
+            Track expenses, set goals, get AI insights, and earn rewards—all in
+            one place.
           </p>
-          <Link 
-            to="/signup" 
-            className="inline-block bg-white text-primary font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+          <Link
+            to={isLoggedIn ? "/dashboard" : "/signup"}
+            className="font-bold text-lg px-8 py-4 rounded-full shadow-lg transition-transform transform hover:scale-105"
+            style={{
+              backgroundColor: "#0BDB00",
+              color: "#1C1C1E",
+            }}
           >
-            Sign up for free and start managing your budget today!
+            {isLoggedIn ? "Go to Dashboard" : "Get Started for Free"}
           </Link>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 max-w-6xl mx-auto px-6">
-        <div className="bg-background shadow-md p-6 rounded-lg text-center hover:shadow-lg transition-shadow">
-          <h3 className="text-lg font-bold text-primary mb-3">Track Expenses in Real-Time</h3>
-          <p className="text-sm text-gray-600">Keep all your expenses organized in one place.</p>
-        </div>
-        <div className="bg-background shadow-md p-6 rounded-lg text-center hover:shadow-lg transition-shadow">
-          <h3 className="text-lg font-bold text-primary mb-3">Set and Reach Savings Goals</h3>
-          <p className="text-sm text-gray-600">Visualize progress and stay motivated.</p>
-        </div>
-        <div className="bg-background shadow-md p-6 rounded-lg text-center hover:shadow-lg transition-shadow">
-          <h3 className="text-lg font-bold text-primary mb-3">Personalized AI Insights</h3>
-          <p className="text-sm text-gray-600">Get suggestions to save more and spend wisely.</p>
-        </div>
-        <div className="bg-background shadow-md p-6 rounded-lg text-center hover:shadow-lg transition-shadow">
-          <h3 className="text-lg font-bold text-primary mb-3">Earn Rewards</h3>
-          <p className="text-sm text-gray-600">Get rewarded as you reach your financial goals.</p>
+      <section
+        className="py-16"
+        style={{ backgroundColor: "#262626", color: "#E0E0E0" }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+            Features Built for Your Success
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Track Expenses",
+                description: "Real-time expense tracking to keep you on budget.",
+                icon: "📊",
+              },
+              {
+                title: "Set Goals",
+                description: "Set and achieve personalized savings goals.",
+                icon: "🎯",
+              },
+              {
+                title: "AI Insights",
+                description: "Get tailored recommendations to optimize spending.",
+                icon: "🤖",
+              },
+              {
+                title: "Earn Rewards",
+                description: "Be rewarded for reaching your financial milestones.",
+                icon: "🎉",
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: "#1C1C1E", color: "#E0E0E0" }}
+              >
+                <div
+                  className="text-4xl mb-4"
+                  style={{ color: "#0BDB00" }}
+                >
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <p style={{ color: "#B0B0B0" }}>{feature.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Why Cashly Section */}
-      <section className="text-center mt-20 max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-primary mb-6">Why Cashly?</h2>
-        <p className="text-lg text-gray-700 mb-10">
-          Leverage AI to make your budgeting simpler, smarter, and stress-free.
-        </p>
-        <img 
-          src= {HomepageImage}
-          alt="Dashboard preview" 
-          className="mx-auto rounded-lg shadow-lg hover:shadow-2xl transition-shadow"
-        />
+      <section
+        className="py-16"
+        style={{ backgroundColor: "#1C1C1E", color: "#E0E0E0" }}
+      >
+        <div className="max-w-6xl mx-auto text-center px-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Why Choose Cashly?
+          </h2>
+          <p className="text-lg mb-10" style={{ color: "#B0B0B0" }}>
+            Leverage AI to make budgeting simpler, smarter, and stress-free.
+          </p>
+          <img
+            src={HomepageImage}
+            alt="Smart AI Insights"
+            className="mx-auto rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full max-w-4xl"
+          />
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section
+        className="py-16"
+        style={{ backgroundColor: "#262626", color: "#E0E0E0" }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+            What Our Users Say
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                quote:
+                  "Cashly completely transformed how I manage my budget. Highly recommend!",
+                name: "Tomasz S.",
+              },
+              {
+                quote:
+                  "The AI insights are a game-changer. I've saved so much money!",
+                name: "Ori M.",
+              },
+              {
+                quote:
+                  "The rewards system keeps me motivated to hit my financial goals.",
+                name: "Dan B.",
+              },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105"
+                style={{ backgroundColor: "#1C1C1E", color: "#E0E0E0" }}
+              >
+                <p
+                  className="italic mb-4"
+                  style={{ color: "#B0B0B0" }}
+                >
+                  "{testimonial.quote}"
+                </p>
+                <h4 className="font-bold" style={{ color: "#0BDB00" }}>
+                  {testimonial.name}
+                </h4>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Call-to-Action Section */}
-      <div className="text-center mt-16">
-        <Link 
-          to="/signup" 
-          className="bg-gradient-to-r from-gradientFrom to-gradientTo text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:opacity-90 transition-opacity"
-        >
-          Get Started for Free
-        </Link>
-      </div>
+      <section
+        className="py-16"
+        style={{ backgroundColor: "#1C1C1E", color: "#E0E0E0" }}
+      >
+        <div className="max-w-5xl mx-auto text-center px-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Take Control of Your Finances?
+          </h2>
+          <p className="text-lg mb-8" style={{ color: "#B0B0B0" }}>
+            Join thousands of users who are taking charge of their money with
+            Cashly.
+          </p>
+          <Link
+            to={isLoggedIn ? "/dashboard" : "/signup"}
+            className="font-bold text-lg px-8 py-4 rounded-full shadow-lg transition-transform transform hover:scale-105"
+            style={{
+              backgroundColor: "#0BDB00",
+              color: "#1C1C1E",
+            }}
+          >
+            {isLoggedIn ? "Go to Dashboard" : "Get Started Now"}
+          </Link>
+        </div>
+      </section>
     </AnimatedPage>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

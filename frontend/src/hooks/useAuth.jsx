@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 // Toggle this variable to switch between mock authentication and actual authentication
-const USE_MOCK_AUTH = false;
+const USE_MOCK_AUTH = true;
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(USE_MOCK_AUTH); // Mock starts logged in if true

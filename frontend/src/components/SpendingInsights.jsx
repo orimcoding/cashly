@@ -178,15 +178,15 @@ const SpendingInsights = ({ transactions }) => {
   return (
     <div className="bg-white p-6 rounded shadow">
       <h2 className="text-xl font-bold text-primary mb-4">Spending Insights</h2>
-
-      <div className="flex flex-wrap md:flex-nowrap items-start gap-6">
+  
+      <div className="flex flex-wrap md:flex-nowrap items-center gap-6">
         {/* Pie Chart Section */}
-        <div className="flex-1 min-w-[300px] max-w-[500px]">
+        <div className="flex-1 min-w-[300px] max-w-[500px] flex flex-col items-center">
           <h3 className="text-lg font-semibold text-gray-600 mb-3 text-center">By Category</h3>
           <Pie data={categoryData} options={categoryData.options} />
-
+  
           {/* Category Filter */}
-          <div className="mt-4 text-center">
+          {/* <div className="mt-4 text-center">
             <h4 className="text-sm font-semibold text-gray-600 mb-2">Filter Categories</h4>
             <div
               className="relative flex justify-center items-center"
@@ -234,14 +234,14 @@ const SpendingInsights = ({ transactions }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
-
+  
         {/* Line Chart Section */}
-        <div className="flex-1 min-w-[300px]">
-          <h3 className="text-lg font-semibold text-gray-600 mb-3 text-center">Over Time</h3>
+        <div className="flex-1 min-w-[300px] flex flex-col items-center">
+          <h3 className="text-lg font-semibold text-gray-600 mb-3 text-center">By Day</h3>
           <Line data={spendingOverTimeData} options={spendingOverTimeData.options} />
-
+  
           {/* Date Range Filter */}
           <div className="mt-4">
             <h4 className="text-sm font-semibold text-gray-600 mb-2 text-center">Filter Date Range</h4>
@@ -291,7 +291,7 @@ const SpendingInsights = ({ transactions }) => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default SpendingInsights;
