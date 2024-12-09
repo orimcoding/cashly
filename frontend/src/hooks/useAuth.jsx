@@ -27,7 +27,9 @@ export function AuthProvider({ children }) {
       });
 
       if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+        const errorText = await res.text(); // Get detailed error message
+        console.error(`API error response: ${errorText}`); // Debugging
+        throw new Error(`Login failed with status ${res.status}: ${errorText}`);
       }
 
       const data = await res.json();
