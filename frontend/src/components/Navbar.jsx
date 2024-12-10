@@ -27,12 +27,12 @@ function Navbar() {
           mobileMenuOpen ? "block" : "hidden"
         }`}
       >
-        <Link
+        {/* <Link
           to="/"
           className="text-[#E0E0E0] hover:text-[#0BDB00] block transition duration-200 ease-in-out"
         >
           Home
-        </Link>
+        </Link> */}
         {isLoggedIn && (
           <>
             <Link
@@ -59,12 +59,12 @@ function Navbar() {
             >
               Insights
             </Link>
-            <Link
+            {/* <Link
               to="/rewards"
               className="text-[#E0E0E0] hover:text-[#0BDB00] block transition duration-200 ease-in-out"
             >
               Rewards
-            </Link>
+            </Link> */}
             <Link
               to="/profile"
               className="text-[#E0E0E0] hover:text-[#0BDB00] block transition duration-200 ease-in-out"

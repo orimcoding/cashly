@@ -23,7 +23,7 @@ function Sidebar() {
         <SidebarLink to="/track-expenses" icon={<FaWallet />} label="Track Expenses" />
         <SidebarLink to="/goals" icon={<FaBullseye />} label="Manage Goals" />
         <SidebarLink to="/insights" icon={<FaLightbulb />} label="AI Insights" />
-        <SidebarLink to="/rewards" icon={<FaGift />} label="Rewards" />
+        {/* <SidebarLink to="/rewards" icon={<FaGift />} label="Rewards" /> */}
         <SidebarLink to="/profile" icon={<FaUser />} label="Profile Settings" />
       </nav>
     </aside>

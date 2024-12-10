@@ -15,30 +15,24 @@ function GoalsPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate the form fields
     if (formData.name && formData.target && formData.date) {
-      // Convert target to a number to prevent crashes
       const targetAsNumber = parseFloat(formData.target);
 
-      // Ensure target is a valid number
       if (isNaN(targetAsNumber) || targetAsNumber <= 0) {
         alert("Please enter a valid target amount!");
         return;
       }
 
-      // Add the new goal to the list
       setGoals([
         ...goals,
         {
           id: Date.now(),
           name: formData.name,
-          target: targetAsNumber, // Use the parsed number here
-          saved: 0, // Initialize saved as 0
+          target: targetAsNumber,
+          saved: 0,
           date: formData.date,
         },
       ]);
-
-      // Reset the form fields
       setFormData({ name: "", target: "", date: "" });
     } else {
       alert("Please fill out all fields!");
@@ -56,19 +50,19 @@ function GoalsPage() {
         <div
           className="flex-grow p-6"
           style={{
-            backgroundColor: "#1C1C1E", // Dark background for the main content
-            color: "#E0E0E0", // Light text for readability
+            backgroundColor: "#1C1C1E", // Page background color
+            color: "#E0E0E0", // Light text
           }}
         >
           <h1
             className="text-4xl font-bold mb-6"
-            style={{ color: "#0BDB00" }} // Primary green for the title
+            style={{ color: "#0BDB00" }} // Primary green for header
           >
             Savings Goals
           </h1>
           <p
             className="mb-8"
-            style={{ color: "#B0B0B0" }} // Muted text for descriptions
+            style={{ color: "#B0B0B0" }} // Muted text for the subheader
           >
             Set new goals and track your progress toward achieving them.
           </p>
@@ -76,7 +70,7 @@ function GoalsPage() {
           {/* "Set New Goal" Form */}
           <div
             className="p-6 rounded-lg shadow-lg mb-8"
-            style={{ backgroundColor: "#262626" }} // Secondary background
+            style={{ backgroundColor: "#262626" }} // Secondary background for the form
           >
             <h2 className="text-2xl font-bold mb-4" style={{ color: "#E0E0E0" }}>
               Set New Goal
@@ -163,11 +157,11 @@ function GoalsPage() {
           </div>
 
           {/* Goals Section */}
-          <div
-            className="p-6 rounded-lg shadow-lg"
-            style={{ backgroundColor: "#262626" }} // Secondary background
-          >
-            <h2 className="text-2xl font-bold mb-4" style={{ color: "#E0E0E0" }}>
+          <div>
+            <h2
+              className="text-2xl font-bold mb-4"
+              style={{ color: "#E0E0E0" }}
+            >
               Your Goals
             </h2>
             {goals.length > 0 ? (
@@ -176,7 +170,7 @@ function GoalsPage() {
                   <GoalCard
                     key={goal.id}
                     goal={goal}
-                    handleDelete={handleDelete} // Pass delete functionality for integration
+                    handleDelete={handleDelete}
                   />
                 ))}
               </div>
