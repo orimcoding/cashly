@@ -16,14 +16,12 @@ function DashboardPage() {
       const parsedExpenses = savedExpenses ? JSON.parse(savedExpenses) : [];
       const parsedGoals = savedGoals ? JSON.parse(savedGoals) : [];
 
-      // Sort expenses by most recent and limit to 3
+      // Sort and select data
       const recentExpenses = parsedExpenses
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 3);
-
-      // Sort goals by closest to completion (saved/target ratio) and limit to 3
       const topGoals = parsedGoals
-        .sort((a, b) => b.saved / b.target - a.saved / a.target)
+        .sort((a, b) => (b.saved / b.target || 0) - (a.saved / a.target || 0))
         .slice(0, 3);
 
       setExpenses(recentExpenses);
@@ -48,131 +46,120 @@ function DashboardPage() {
             Dashboard
           </h1>
 
-          {/* Loading Spinner */}
           {loading && <LoadingSpinner />}
 
-          {/* Main Dashboard Sections */}
           {!loading && (
             <>
               {/* Recent Expenses Section */}
               <section className="mb-12">
-                <div
-                  className="rounded-lg shadow-lg p-6"
-                  style={{
-                    backgroundColor: "#262626",
-                    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-                  }}
-                >
-                  <h2 className="text-3xl font-bold mb-6" style={{ color: "#E0E0E0" }}>
-                    Recent Expenses
-                  </h2>
-                  {expenses.length > 0 ? (
-                    <div className="space-y-4">
-                      {expenses.map((expense) => (
-                        <div
-                          key={expense.id}
-                          className="flex justify-between items-center p-4 rounded-md"
-                          style={{
-                            backgroundColor: "#1C1C1E",
-                            border: "1px solid rgba(255, 255, 255, 0.1)",
-                          }}
-                        >
-                          <div>
-                            <h3 className="text-lg font-bold" style={{ color: "#E0E0E0" }}>
-                              {expense.category}
-                            </h3>
-                            <p style={{ color: "#B0B0B0", fontSize: "0.9rem" }}>
-                              {new Date(expense.date).toLocaleDateString()}
-                            </p>
-                          </div>
-                          <p className="text-lg font-bold" style={{ color: "#0BDB00" }}>
-                            ${expense.amount.toFixed(2)}
+                <h2 className="text-3xl font-bold mb-6" style={{ color: "#E0E0E0" }}>
+                  Recent Expenses
+                </h2>
+                {expenses.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {expenses.map((expense) => (
+                      <div
+                        key={expense.id}
+                        className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between"
+                        style={{
+                          backgroundColor: "#262626",
+                          color: "#E0E0E0",
+                          border: "1px solid rgba(255, 255, 255, 0.1)",
+                        }}
+                      >
+                        <div className="mb-4">
+                          <h3 className="text-lg font-bold mb-2">
+                            {expense.category}
+                          </h3>
+                          <p style={{ color: "#B0B0B0", fontSize: "0.9rem" }}>
+                            {new Date(expense.date).toLocaleDateString()}
                           </p>
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p style={{ color: "#B0B0B0" }}>No recent expenses to display.</p>
-                  )}
-                </div>
+                        <p
+                          className="text-xl font-bold"
+                          style={{ color: "#0BDB00" }}
+                        >
+                          ${parseFloat(expense.amount || 0).toFixed(2)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ color: "#B0B0B0" }}>No recent expenses to display.</p>
+                )}
               </section>
 
               {/* Top Goals Section */}
               <section className="mb-12">
-                <div
-                  className="rounded-lg shadow-lg p-6"
-                  style={{
-                    backgroundColor: "#262626",
-                    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-                  }}
-                >
-                  <h2 className="text-3xl font-bold mb-6" style={{ color: "#E0E0E0" }}>
-                    Top Goals
-                  </h2>
-                  {goals.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {goals.map((goal) => (
+                <h2 className="text-3xl font-bold mb-6" style={{ color: "#E0E0E0" }}>
+                  Top Goals
+                </h2>
+                {goals.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {goals.map((goal) => {
+                      const progress = Math.min((goal.saved / goal.target) * 100, 100);
+                      const goalColor = goal.color || "#0BDB00"; // Default color if no color is assigned
+
+                      return (
                         <div
                           key={goal.id}
-                          className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between"
+                          className="p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between"
                           style={{
-                            backgroundColor: "#1C1C1E",
+                            backgroundColor: "#262626",
                             color: "#E0E0E0",
+                            border: "1px solid rgba(255, 255, 255, 0.1)",
                           }}
                         >
-                          {/* Goal Title */}
                           <h3
                             className="font-bold text-lg truncate mb-4"
                             style={{ color: "#FFFFFF" }}
                           >
                             {goal.name}
                           </h3>
-
-                          {/* Progress Information */}
-                          <p className="text-sm mb-4" style={{ color: "#B0B0B0" }}>
-                            Saved:{" "}
-                            <span style={{ color: "#0BDB00", fontWeight: "bold" }}>
-                              ${goal.saved.toFixed(2)}
-                            </span>{" "}
-                            / Target:{" "}
-                            <span style={{ color: "#FFFFFF", fontWeight: "bold" }}>
-                              ${goal.target.toFixed(2)}
-                            </span>
-                          </p>
-
-                          {/* Progress Bar */}
+                          <div className="mb-4">
+                            <p style={{ color: "#B0B0B0", fontSize: "0.9rem" }}>
+                              Target:{" "}
+                              <span style={{ fontWeight: "bold", color: "#FFFFFF" }}>
+                                ${parseFloat(goal.target || 0).toFixed(2)}
+                              </span>
+                            </p>
+                            <p style={{ color: "#B0B0B0", fontSize: "0.9rem" }}>
+                              Saved:{" "}
+                              <span style={{ fontWeight: "bold", color: goalColor }}>
+                                ${parseFloat(goal.saved || 0).toFixed(2)}
+                              </span>
+                            </p>
+                          </div>
                           <div
-                            className="relative w-full h-4 rounded-full mb-4"
+                            className="w-full h-4 rounded-full mb-4"
                             style={{ backgroundColor: "#1C1C1E" }}
                           >
                             <div
-                              className="absolute top-0 left-0 h-4 rounded-full transition-all"
+                              className="h-4 rounded-full"
                               style={{
-                                width: `${Math.min((goal.saved / goal.target) * 100, 100)}%`,
-                                background: "#0BDB00",
+                                width: `${progress}%`,
+                                background: progress === 100 ? "#FFD700" : goalColor,
                               }}
                             ></div>
                           </div>
-
-                          {/* Completion Button */}
                           <button
                             className="px-4 py-2 rounded font-bold"
                             style={{
-                              backgroundColor: "#007BFF",
+                              backgroundColor: goalColor,
                               color: "#FFFFFF",
                               transition: "background-color 0.3s ease",
                             }}
                             onClick={() => (window.location.href = "/goals")}
                           >
-                            View Goals
+                            View All Goals
                           </button>
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p style={{ color: "#B0B0B0" }}>No goals to display.</p>
-                  )}
-                </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p style={{ color: "#B0B0B0" }}>No goals to display.</p>
+                )}
               </section>
             </>
           )}
