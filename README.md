@@ -33,12 +33,5 @@ Ensure you have the following installed:
 - Node.js (v18+ recommended)
 - npm (v7+ recommended)
 
-### How To Run
-- Open terminal #1:
-- cd backend
-- npm install
-- node server.js
-- Open terminal #2:
-- cd frontend
-- npm install
-- npm run dev
+### 🏃 **How To Run**
+<pre> ```bash # Open terminal #1: cd backend npm install node server.js # Open terminal #2: cd frontend npm install npm run dev ``` </pre>
